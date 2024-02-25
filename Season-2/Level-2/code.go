@@ -38,10 +38,8 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Test users
 	var testFakeMockUsers = map[string]string{
-		"user1@example.com": "password12345",
 		"user2@example.com": "B7rx9OkWVdx13$QF6Imq",
 		"user3@example.com": "hoxnNT4g&ER0&9Nz0pLO",
-		"user4@example.com": "Log4Fun",
 	}
 
 	if r.Method == "POST" {
