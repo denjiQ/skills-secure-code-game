@@ -37,10 +37,12 @@ def index():
     if request.method == 'POST':
         planet = request.form.get('planet')
         sanitized_planet = re.sub(r'[<>{}[\]]', '', planet if planet else '')
+        if 'script' in sanitized_planet.lower() :
+            return '<h2>Blocked</h2></p>'
+        if sanitized_planet not in planet_data:
+            return '<h2>Please enter a planet name.</h2>'
 
         if sanitized_planet:
-            if 'script' in sanitized_planet.lower() :
-                return '<h2>Blocked</h2></p>'
     
             return render_template('details.html', 
                                    planet=sanitized_planet, 
