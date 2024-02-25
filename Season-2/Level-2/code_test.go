@@ -20,7 +20,7 @@ import (
 )
 
 func TestLoginHandler_ValidCredentials(t *testing.T) {
-	reqBody := `{"email": "user2@example.com", "password": "B7rx9OkWVdx13$QF6Imq"}`
+	reqBody := `{"email": "user1@example.com", "password": "password12345"}`
 	req, err := http.NewRequest("POST", "/login", strings.NewReader(reqBody))
 	if err != nil {
 		t.Fatalf("Failed to create request: %v", err)
@@ -36,7 +36,7 @@ func TestLoginHandler_ValidCredentials(t *testing.T) {
 }
 
 func TestLoginHandler_InvalidCredentials(t *testing.T) {
-	reqBody := `{"email": "user2@example.com", "password": "invalid_password"}`
+	reqBody := `{"email": "user1@example.com", "password": "invalid_password"}`
 	req, err := http.NewRequest("POST", "/login", strings.NewReader(reqBody))
 	if err != nil {
 		t.Fatalf("Failed to create request: %v", err)
@@ -57,7 +57,7 @@ func TestLoginHandler_InvalidCredentials(t *testing.T) {
 }
 
 func TestLoginHandler_InvalidEmailFormat(t *testing.T) {
-	reqBody := `{"email": "invalid_email", "password": "B7rx9OkWVdx13$QF6Imq"}`
+	reqBody := `{"email": "invalid_email", "password": "password12345"}`
 	req, err := http.NewRequest("POST", "/login", strings.NewReader(reqBody))
 	if err != nil {
 		t.Fatalf("Failed to create request: %v", err)
@@ -100,7 +100,7 @@ func TestLoginHandler_InvalidRequestMethod(t *testing.T) {
 }
 
 func TestLoginHandler_UnknownFieldsInRequestBody(t *testing.T) {
-	reqBody := `{"email": "user2@example.com", "password": "B7rx9OkWVdx13$QF6Imq", "unknown_field": "value"}`
+	reqBody := `{"email": "user1@example.com", "password": "password12345", "unknown_field": "value"}`
 
 	req, err := http.NewRequest("POST", "/login", strings.NewReader(reqBody))
 	if err != nil {
